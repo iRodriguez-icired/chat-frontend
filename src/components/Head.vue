@@ -45,7 +45,7 @@
 
 <script>
 export default {
-  name: 'Input',
+  name: 'Head',
   props: {
     btn1: String,
     btn2: String,
