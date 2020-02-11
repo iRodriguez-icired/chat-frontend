@@ -8,26 +8,25 @@
       :route="'/'"
       :btn1="$t('btn2')"
       :btn2="$t('btn3')"
-      :room_name="room_name"
+      :roomName="roomName"
       @open="$bvModal.show('modal-scoped')"
     />
     <Box
       :rooms-father="rooms"
-      :show="state"
+      :show="show"
     />
     <Modal
       :action="'Enter'"
       :placehold="$t('ph3')"
       :evnt="$t('btn6')"
       @enter="createRoom()"
-      @input="room_name = $event"
+      @input="roomName = $event"
     />
-    {{ debugg }}
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import Box from '../components/Box.vue';
 import Modal from '../components/Modal.vue';
 import Head from '../components/Head.vue';
@@ -41,18 +40,19 @@ export default {
   },
   data() {
     return {
-      room_name: '',
-      debugg: [],
-      state: false,
+      roomName: '',
     };
   },
-  computed: mapState(['rooms', 'url', 'name']),
+  computed: mapState(['rooms', 'url', 'name', 'show']),
   created() {
+    this.setRooms([]);
     if (this.name !== '') {
-      this.state = true;
+      this.setState(true);
       Api.rooms.index().then((res) => {
-        this.setRooms(res.rooms);
-        this.state = false;
+        if (res !== undefined) {
+          this.setRooms(res.rooms);
+        }
+        this.setState(false);
       });
     } else {
       this.$router.push('/', () => {});
@@ -60,16 +60,16 @@ export default {
   },
   methods: {
     createRoom() {
-      Api.rooms.create(this.room_name).then(() => {
+      this.setState(true);
+      Api.rooms.create(this.roomName).then(() => {
         Api.rooms.index().then((res) => {
           this.setRooms(res.rooms);
-          this.state = false;
+          this.setState(false);
         });
-        this.state = false;
+        this.setState(false);
       });
     },
-    ...mapActions(['loadRooms']),
-    ...mapMutations(['crearSala', 'setRooms', 'setRoomId']),
+    ...mapMutations(['setRooms', 'setRoomId', 'setState']),
   },
 
 };

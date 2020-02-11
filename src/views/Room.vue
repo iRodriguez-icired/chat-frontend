@@ -12,7 +12,7 @@
     <Box
       :messages-father="messages"
       class="text-left"
-      :show="state"
+      :show="show"
     />
 
     <div
@@ -28,7 +28,6 @@
         @input="msg = $event"
       />
     </div>
-    {{ debugg }}
   </div>
 </template>
 
@@ -49,21 +48,23 @@ export default {
     return {
       msg: '',
       param: '',
-      debugg: '',
       roomName: '',
     };
   },
   computed: {
-    ...mapState(['name', 'messages', 'state']),
+    ...mapState(['name', 'messages', 'show']),
     ...mapGetters(['getRoomName']),
   },
   created() {
     if (this.name !== '') {
+      this.setMsg([]);
       this.param = this.$router.history.current.params.id;
       this.getRoom();
       this.setState(true);
       Api.messages.show(this.param).then((res) => {
-        this.setMsg(res.msg);
+        if (res !== undefined) {
+          this.setMsg(res.msg);
+        }
         this.setState(false);
       });
     } else {

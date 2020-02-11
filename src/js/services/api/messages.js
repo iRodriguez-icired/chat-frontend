@@ -3,6 +3,12 @@ import Vue from 'vue';
 export default {
   // Aquí tendras que cambiar {nameResource} por el endpoint de la API. Por ejemplo: //
   baseUrl: 'http://localhost:3000/messages?room_id=',
+  err(err) {
+    if (!err.status) {
+      return Vue.toasted.error('No hay conexión con el servidor');
+    }
+    return Vue.toasted.error(`Error: ${err.status}, ${err.body.message}`);
+  },
   // definimos el resource que será utilizado en el intersector para traducir los errores
   mergeOptions(...options) {
     const DEFAULT_OPTIONS = { resource: 'messajes.js' }; return Object.assign({},
@@ -13,6 +19,8 @@ export default {
       (response) => ({
         msg: response.body.messages,
       }),
-    );
+    ).catch((error) => {
+      this.err(error);
+    });
   },
 };
