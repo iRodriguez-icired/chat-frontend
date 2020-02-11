@@ -42,7 +42,7 @@
 import Gif from './Gif.vue';
 
 export default {
-  name: 'Box',
+  name: 'BoxComponent',
   components: {
     Gif
   },

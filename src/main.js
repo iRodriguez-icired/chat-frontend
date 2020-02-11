@@ -17,7 +17,7 @@ Vue.use(ActionCableVue, {
   debug: true,
   debugLevel: 'error',
   connectionUrl: 'ws://localhost:3000/chat',
-  connectImmediately: false
+  connectImmediately: true
 });
 Vue.use(BootstrapVue);
 Vue.use(VueResource);
