@@ -1,15 +1,39 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <CustomInput
+    :variant="'outline-info'"
+    :action="$t('btn1')"
+    :placehold="$t('ph1')"
+    @enter="nameNotEmpty(inputNombreUsuario)"
+    @input="inputNombreUsuario = $event"
+  />
 </template>
 
 <script>
-// @ is an alias to /src
-
+import {mapState, mapMutations} from 'vuex';
+import CustomInput from '../components/CustomInput.vue';
 
 export default {
   name: 'Home',
+  components: {CustomInput},
+  data() {
+    return {
+      inputNombreUsuario: ''
+    };
+  },
+  computed: mapState(['nombre']),
+  methods: {
+    ...mapMutations(['setNombre']),
+    nameNotEmpty(name) {
+      if (name !== '') {
+        this.setNombre(this.inputNombreUsuario);
+      } else {
+        this.$toasted.error('El nombre no puede estar Vacío');
+      }
+    }
+  }
+
 };
 </script>
+
+<style scoped>
+</style>
