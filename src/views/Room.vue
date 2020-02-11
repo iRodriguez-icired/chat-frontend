@@ -91,17 +91,21 @@ export default {
   methods: {
     ...mapMutations(['sendMsg', 'setMsg', 'setState']),
     sendMessage() {
-      this.$cable.perform({
-        channel: 'RoomChannel',
-        data: {
-          content: {
-            author: this.name,
-            text: this.msg,
-            room_id: this.param,
+      if (this.msg !== '') {
+        this.$cable.perform({
+          channel: 'RoomChannel',
+          data: {
+            content: {
+              author: this.name,
+              text: this.msg,
+              room_id: this.param,
+            },
           },
-        },
-      });
-      this.msg = '';
+        });
+        this.msg = '';
+      } else {
+        this.$toasted.error('No se puede enviar un mensaje vacío');
+      }
     },
     getRoom() {
       this.roomName = this.getRoomName(this.param).name;

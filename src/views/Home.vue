@@ -27,7 +27,7 @@ export default {
       if (name !== '') {
         this.setNombre(this.inputNombreUsuario);
       } else {
-        this.$toasted.error('El nombre no puede estar Vacío');
+        this.$toasted.error('El nombre no puede estar vacío');
       }
     },
   },

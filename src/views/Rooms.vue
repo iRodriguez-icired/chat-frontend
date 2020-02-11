@@ -60,14 +60,18 @@ export default {
   },
   methods: {
     createRoom() {
-      this.setState(true);
-      Api.rooms.create(this.roomName).then(() => {
-        Api.rooms.index().then((res) => {
-          this.setRooms(res.rooms);
+      if (this.roomName !== '') {
+        this.setState(true);
+        Api.rooms.create(this.roomName).then(() => {
+          Api.rooms.index().then((res) => {
+            this.setRooms(res.rooms);
+            this.setState(false);
+          });
           this.setState(false);
         });
-        this.setState(false);
-      });
+      } else {
+        this.$toasted.error('El nombre de la sala no puede estar vacío');
+      }
     },
     ...mapMutations(['setRooms', 'setRoomId', 'setState']),
   },
