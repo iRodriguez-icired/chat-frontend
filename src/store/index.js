@@ -10,7 +10,7 @@ export default new Vuex.Store({
     name: '',
     rooms: [],
     messages: [],
-    show: false,
+    show: false
   },
   mutations: {
     setNombre: (state, name) => {
@@ -26,7 +26,7 @@ export default new Vuex.Store({
     },
     setState: (state, bool) => {
       state.show = bool;
-    },
+    }
 
   },
   actions: {
@@ -35,7 +35,9 @@ export default new Vuex.Store({
   },
 
   getters: {
-    // eslint-disable-next-line no-underscore-dangle
-    getRoomName: ((state) => (id) => state.rooms.find((room) => room._id.$oid === id)),
-  },
+    getRoomName: (state => {
+      // eslint-disable-next-line no-underscore-dangle
+      return id => { return state.rooms.find(room => { return room._id.$oid === id; }); };
+    })
+  }
 });

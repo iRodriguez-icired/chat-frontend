@@ -5,7 +5,7 @@
   >
     <Head
       :btn2="$t('btn4')"
-      :roomName="roomName"
+      :room-name="roomName"
       :route2="'/rooms'"
     />
 
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapGetters } from 'vuex';
+import {mapState, mapMutations, mapGetters} from 'vuex';
 import Box from '../components/Box.vue';
 import CustomInput from '../components/CustomInput.vue';
 import Head from '../components/Head.vue';
@@ -42,18 +42,18 @@ export default {
   components: {
     Box,
     CustomInput,
-    Head,
+    Head
   },
   data() {
     return {
       msg: '',
       param: '',
-      roomName: '',
+      roomName: ''
     };
   },
   computed: {
     ...mapState(['name', 'messages', 'show']),
-    ...mapGetters(['getRoomName']),
+    ...mapGetters(['getRoomName'])
   },
   created() {
     if (this.name !== '') {
@@ -61,7 +61,7 @@ export default {
       this.param = this.$router.history.current.params.id;
       this.getRoom();
       this.setState(true);
-      Api.messages.show(this.param).then((res) => {
+      Api.messages.show(this.param).then(res => {
         if (res !== undefined) {
           this.setMsg(res.msg);
         }
@@ -74,7 +74,7 @@ export default {
   mounted() {
     this.$cable.subscribe({
       channel: 'RoomChannel',
-      id: this.param,
+      id: this.param
     });
   },
   channels: {
@@ -83,10 +83,10 @@ export default {
       received(data) {
         this.messages.push({
           author: data.message.author,
-          text: data.message.text,
+          text: data.message.text
         });
-      },
-    },
+      }
+    }
   },
   methods: {
     ...mapMutations(['sendMsg', 'setMsg', 'setState']),
@@ -98,9 +98,9 @@ export default {
             content: {
               author: this.name,
               text: this.msg,
-              room_id: this.param,
-            },
-          },
+              room_id: this.param
+            }
+          }
         });
         this.msg = '';
       } else {
@@ -109,8 +109,8 @@ export default {
     },
     getRoom() {
       this.roomName = this.getRoomName(this.param).name;
-    },
-  },
+    }
+  }
 
 };
 </script>

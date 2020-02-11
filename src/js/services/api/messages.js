@@ -11,16 +11,18 @@ export default {
   },
   // definimos el resource que será utilizado en el intersector para traducir los errores
   mergeOptions(...options) {
-    const DEFAULT_OPTIONS = { resource: 'messajes.js' }; return Object.assign({},
+    const DEFAULT_OPTIONS = {resource: 'messajes.js'}; return Object.assign({},
       DEFAULT_OPTIONS, ...options);
   },
   show(id, options = {}) {
     return Vue.http.get(this.baseUrl + id, options).then(
-      (response) => ({
-        msg: response.body.messages,
-      }),
-    ).catch((error) => {
+      response => {
+        return {
+          msg: response.body.messages
+        };
+      }
+    ).catch(error => {
       this.err(error);
     });
-  },
+  }
 };

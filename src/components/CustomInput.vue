@@ -25,7 +25,7 @@ export default {
     enter: String,
     variant: String,
     action: String,
-    placehold: String,
+    placehold: String
   },
   computed: {
     inputVal: {
@@ -34,14 +34,14 @@ export default {
       },
       set(val) {
         this.$emit('input', val);
-      },
-    },
+      }
+    }
   },
   methods: {
     event() {
       this.$emit('enter');
-    },
-  },
+    }
+  }
 };
 </script>
 

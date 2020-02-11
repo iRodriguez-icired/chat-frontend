@@ -11,12 +11,12 @@
 export default {
   name: 'Gif',
   props: {
-    show: Boolean,
+    show: Boolean
   },
   computed: {
   },
   methods: {
-  },
+  }
 };
 </script>
 

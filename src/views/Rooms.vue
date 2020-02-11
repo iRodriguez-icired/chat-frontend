@@ -8,7 +8,7 @@
       :route="'/'"
       :btn1="$t('btn2')"
       :btn2="$t('btn3')"
-      :roomName="roomName"
+      :room-name="roomName"
       @open="$bvModal.show('modal-scoped')"
     />
     <Box
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import {mapState, mapMutations} from 'vuex';
 import Box from '../components/Box.vue';
 import Modal from '../components/Modal.vue';
 import Head from '../components/Head.vue';
@@ -36,11 +36,11 @@ export default {
   components: {
     Box,
     Modal,
-    Head,
+    Head
   },
   data() {
     return {
-      roomName: '',
+      roomName: ''
     };
   },
   computed: mapState(['rooms', 'url', 'name', 'show']),
@@ -48,7 +48,7 @@ export default {
     this.setRooms([]);
     if (this.name !== '') {
       this.setState(true);
-      Api.rooms.index().then((res) => {
+      Api.rooms.index().then(res => {
         if (res !== undefined) {
           this.setRooms(res.rooms);
         }
@@ -63,7 +63,7 @@ export default {
       if (this.roomName !== '') {
         this.setState(true);
         Api.rooms.create(this.roomName).then(() => {
-          Api.rooms.index().then((res) => {
+          Api.rooms.index().then(res => {
             this.setRooms(res.rooms);
             this.setState(false);
           });
@@ -73,8 +73,8 @@ export default {
         this.$toasted.error(this.$t('err3'));
       }
     },
-    ...mapMutations(['setRooms', 'setRoomId', 'setState']),
-  },
+    ...mapMutations(['setRooms', 'setRoomId', 'setState'])
+  }
 
 };
 </script>

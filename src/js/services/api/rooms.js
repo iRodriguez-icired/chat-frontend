@@ -11,29 +11,31 @@ export default {
   },
   mergeOptions(...options) {
     // definimos el resource que será utilizado en el intersector para traducir los errores
-    const DEFAULT_OPTIONS = { resource: 'rooms.js' }; return Object.assign({},
+    const DEFAULT_OPTIONS = {resource: 'rooms.js'}; return Object.assign({},
       DEFAULT_OPTIONS, ...options);
   },
   index(options = {}) {
     return Vue.http.get(this.baseUrl, options).then(
-      (response) => ({
-        rooms: response.body.rooms,
-      }),
+      response => {
+        return {
+          rooms: response.body.rooms
+        };
+      }
     )
-      .catch((error) => {
+      .catch(error => {
         this.err(error);
       });
   },
   create(data, options = {}) {
     const obj = {
-      name: data,
+      name: data
     };
     return Vue.http.post(this.baseUrl, obj, this.mergeOptions(options))
-      .then((response) => response)
-      .catch((error) => {
+      .then(response => { return response; })
+      .catch(error => {
         this.err(error);
       });
-  },
+  }
   // index(params = {}, options = {}) {
   //     return Vue.http.get(this.baseUrl, options).then(
   //         response => {

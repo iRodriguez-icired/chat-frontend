@@ -16,7 +16,7 @@ describe('Not empty', () => {
     cy.visit('http://localhost:8080');
     cy.get('input').type('Pedro');
     cy.get('.btn').click();
-    cy.get('.btn-info:first', { timeout: 10000 }).click();
+    cy.get('.btn-info:first', {timeout: 10000}).click();
     cy.get('input').type('{enter}');
     cy.get('.toasted');
   });

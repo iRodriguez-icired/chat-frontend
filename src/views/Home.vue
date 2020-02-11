@@ -9,15 +9,15 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import {mapState, mapMutations} from 'vuex';
 import CustomInput from '../components/CustomInput.vue';
 
 export default {
   name: 'Home',
-  components: { CustomInput },
+  components: {CustomInput},
   data() {
     return {
-      inputNombreUsuario: '',
+      inputNombreUsuario: ''
     };
   },
   computed: mapState(['nombre']),
@@ -29,8 +29,8 @@ export default {
       } else {
         this.$toasted.error(this.$t('err1'));
       }
-    },
-  },
+    }
+  }
 
 };
 </script>

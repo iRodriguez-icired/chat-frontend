@@ -23,7 +23,7 @@
 <script>
 export default {
   name: 'Modal',
-  props: { enter: String, placehold: String, evnt: String },
+  props: {enter: String, placehold: String, evnt: String},
   computed: {
     inputVal: {
       get() {
@@ -31,14 +31,14 @@ export default {
       },
       set(val) {
         this.$emit('input', val);
-      },
-    },
+      }
+    }
   },
   methods: {
     event() {
       this.$emit('enter');
-    },
-  },
+    }
+  }
 };
 </script>
 

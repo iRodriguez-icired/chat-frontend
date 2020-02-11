@@ -3,5 +3,5 @@ import messages from './messages';
 
 export default {
   rooms,
-  messages,
+  messages
 };

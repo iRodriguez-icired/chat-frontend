@@ -19,7 +19,7 @@ export default {
       err1: 'El nombre no puede estar vacío',
       err2: 'No se puede enviar un mensaje vacío',
       err3: 'El nombre de la sala no puede estar vacío',
-      errNet: 'No hay conexión con el servidor',
+      errNet: 'No hay conexión con el servidor'
     },
     en: {
       btn1: 'Enter',
@@ -33,7 +33,7 @@ export default {
       err1: 'Name cannot be empty',
       err2: 'Unable to send an empty message',
       err3: 'El nombre de la sala no puede estar vacío',
-      errNet: 'The name of the room cannot be empty',
-    },
-  },
+      errNet: 'The name of the room cannot be empty'
+    }
+  }
 };

@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Toasted from 'vue-toasted';
 import ActionCableVue from 'actioncable-vue';
-import { BootstrapVue } from 'bootstrap-vue';
+import {BootstrapVue} from 'bootstrap-vue';
 import VueResource from 'vue-resource';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
@@ -17,7 +17,7 @@ Vue.use(ActionCableVue, {
   debug: true,
   debugLevel: 'error',
   connectionUrl: 'ws://localhost:3000/chat',
-  connectImmediately: false,
+  connectImmediately: false
 });
 Vue.use(BootstrapVue);
 Vue.use(VueResource);
@@ -26,5 +26,5 @@ new Vue({
   i18n,
   router,
   store,
-  render: (h) => h(App),
+  render: h => { return h(App); }
 }).$mount('#app');
