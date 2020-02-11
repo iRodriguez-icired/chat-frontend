@@ -1,34 +1,13 @@
-# front
+Para instalar y lanzar la aplicación:
 
-## Project setup
-```
-npm install
-```
+Version @vue/cli: 4.1.2
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Version npm: 6.12.1
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Clonar repositorio: git clone https://github.com/IciredAtenllado/Proyecto.git
 
-### Run your unit tests
-```
-npm run test:unit
-```
+Instalar dependencias: npm i (en la raíz del proyecto)
 
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
+Lanzar el servidor: npm run serve
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+El Back-end de este proyecto se encuentra en el repositorio: https://github.com/iRodriguez-icired/chat-backend
