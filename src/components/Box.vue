@@ -44,13 +44,13 @@ import Gif from './Gif.vue';
 export default {
   name: 'Box',
   components: {
-    Gif
+    Gif,
   },
   props: {
     roomsFather: Array,
     messagesFather: Array,
-    show: Boolean
-  }
+    show: Boolean,
+  },
 };
 </script>
 

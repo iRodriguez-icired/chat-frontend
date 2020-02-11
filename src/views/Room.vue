@@ -33,36 +33,36 @@
 </template>
 
 <script>
-import {mapState, mapMutations, mapGetters} from 'vuex';
+import { mapState, mapMutations, mapGetters } from 'vuex';
 import Box from '../components/Box.vue';
 import CustomInput from '../components/CustomInput.vue';
 import Head from '../components/Head.vue';
-import Api from '../js/services/api/resource.js';
+import Api from '../js/services/api/resource';
 
 export default {
   components: {
     Box,
     CustomInput,
-    Head
+    Head,
   },
   data() {
     return {
       msg: '',
       param: '',
       debugg: '',
-      roomName: ''
+      roomName: '',
     };
   },
   computed: {
     ...mapState(['name', 'messages', 'state']),
-    ...mapGetters(['getRoomName'])
+    ...mapGetters(['getRoomName']),
   },
   created() {
     if (this.name !== '') {
       this.param = this.$router.history.current.params.id;
       this.getRoom();
       this.setState(true);
-      Api.messages.show(this.param).then(res => {
+      Api.messages.show(this.param).then((res) => {
         this.setMsg(res.msg);
         this.setState(false);
       });
@@ -73,7 +73,7 @@ export default {
   mounted() {
     this.$cable.subscribe({
       channel: 'RoomChannel',
-      id: this.param
+      id: this.param,
     });
   },
   channels: {
@@ -82,10 +82,10 @@ export default {
       received(data) {
         this.messages.push({
           author: data.message.author,
-          text: data.message.text
+          text: data.message.text,
         });
-      }
-    }
+      },
+    },
   },
   methods: {
     ...mapMutations(['sendMsg', 'setMsg', 'setState']),
@@ -96,16 +96,16 @@ export default {
           content: {
             author: this.name,
             text: this.msg,
-            room_id: this.param
-          }
-        }
+            room_id: this.param,
+          },
+        },
       });
       this.msg = '';
     },
     getRoom() {
       this.roomName = this.getRoomName(this.param).name;
-    }
-  }
+    },
+  },
 
 };
 </script>

@@ -27,30 +27,30 @@
 </template>
 
 <script>
-import {mapState, mapMutations, mapActions} from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 import Box from '../components/Box.vue';
 import Modal from '../components/Modal.vue';
 import Head from '../components/Head.vue';
-import Api from '../js/services/api/resource.js';
+import Api from '../js/services/api/resource';
 
 export default {
   components: {
     Box,
     Modal,
-    Head
+    Head,
   },
   data() {
     return {
       room_name: '',
       debugg: [],
-      state: false
+      state: false,
     };
   },
   computed: mapState(['rooms', 'url', 'name']),
   created() {
     if (this.name !== '') {
       this.state = true;
-      Api.rooms.index().then(res => {
+      Api.rooms.index().then((res) => {
         this.setRooms(res.rooms);
         this.state = false;
       });
@@ -61,7 +61,7 @@ export default {
   methods: {
     createRoom() {
       Api.rooms.create(this.room_name).then(() => {
-        Api.rooms.index().then(res => {
+        Api.rooms.index().then((res) => {
           this.setRooms(res.rooms);
           this.state = false;
         });
@@ -69,8 +69,8 @@ export default {
       });
     },
     ...mapActions(['loadRooms']),
-    ...mapMutations(['crearSala', 'setRooms', 'setRoomId'])
-  }
+    ...mapMutations(['crearSala', 'setRooms', 'setRoomId']),
+  },
 
 };
 </script>

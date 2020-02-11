@@ -53,13 +53,13 @@ export default {
     open: Event,
     route: String,
     roomName: String,
-    route2: String
+    route2: String,
   },
   methods: {
     event() {
       this.$emit('open');
-    }
-  }
+    },
+  },
 };
 </script>
 
