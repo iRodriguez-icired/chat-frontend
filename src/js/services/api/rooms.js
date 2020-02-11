@@ -5,7 +5,7 @@ export default {
   baseUrl: 'http://localhost:3000/rooms',
   err(err) {
     if (!err.status) {
-      return Vue.toasted.error('No hay conexión con el servidor');
+      return Vue.toasted.error(this.$t('errNet'));
     }
     return Vue.toasted.error(`Error: ${err.status}, ${err.body.message}`);
   },

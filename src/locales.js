@@ -16,6 +16,10 @@ export default {
       btn5: 'Enviar',
       btn6: 'Guardar',
       ph3: 'Nombre de la sala',
+      err1: 'El nombre no puede estar vacío',
+      err2: 'No se puede enviar un mensaje vacío',
+      err3: 'El nombre de la sala no puede estar vacío',
+      errNet: 'No hay conexión con el servidor',
     },
     en: {
       btn1: 'Enter',
@@ -26,6 +30,10 @@ export default {
       btn5: 'Send',
       btn6: 'Save',
       ph3: 'Room name',
+      err1: 'Name cannot be empty',
+      err2: 'Unable to send an empty message',
+      err3: 'El nombre de la sala no puede estar vacío',
+      errNet: 'The name of the room cannot be empty',
     },
   },
 };

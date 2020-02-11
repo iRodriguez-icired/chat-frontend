@@ -8,7 +8,7 @@ describe('Not empty', () => {
     cy.visit('http://localhost:8080');
     cy.get('input').type('Pedro');
     cy.get('.btn').click();
-    cy.get('button').type('Crea una sala');
+    cy.get('.create').click();
     cy.get('input').type('{enter}');
     cy.get('.toasted');
   });

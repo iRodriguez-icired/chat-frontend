@@ -3,7 +3,7 @@ describe('Create Romm', () => {
     cy.visit('http://localhost:8080');
     cy.get('input').type('Pedro');
     cy.get('.btn').click();
-    cy.get('button').type('Crea una sala');
+    cy.get('.create').click();
     cy.get('input').type('Sala Test').type('{enter}');
   });
 });

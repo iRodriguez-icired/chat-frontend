@@ -70,7 +70,7 @@ export default {
           this.setState(false);
         });
       } else {
-        this.$toasted.error('El nombre de la sala no puede estar vacío');
+        this.$toasted.error(this.$t('err3'));
       }
     },
     ...mapMutations(['setRooms', 'setRoomId', 'setState']),

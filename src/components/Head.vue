@@ -28,6 +28,7 @@
           v-if="route"
           variant="success"
           @click="event()"
+          class="create"
         >
           {{ btn2 }}
         </b-button>

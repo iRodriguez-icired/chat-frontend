@@ -104,7 +104,7 @@ export default {
         });
         this.msg = '';
       } else {
-        this.$toasted.error('No se puede enviar un mensaje vacío');
+        this.$toasted.error(this.$t('err2'));
       }
     },
     getRoom() {
