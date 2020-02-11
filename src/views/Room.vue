@@ -5,7 +5,7 @@
   >
     <Head
       :btn2="$t('btn4')"
-      :roomname="roomname"
+      :roomName="roomName"
       :route2="'/rooms'"
     />
 
