@@ -27,11 +27,13 @@
 
 <script>
 import {mapState, mapMutations} from 'vuex';
+
 import Box from '../components/Box.vue';
 import Modal from '../components/Modal.vue';
 import Head from '../components/Head.vue';
+
 // eslint-disable-next-line import/no-cycle
-import Api from '../js/services/api/resource';
+import API from '../js/services/api/resource';
 
 export default {
   components: {
@@ -48,31 +50,34 @@ export default {
   created() {
     this.setRooms([]);
     if (this.name !== '') {
-      this.setState(true);
-      Api.rooms.index().then(res => {
-        if (res !== undefined) {
-          this.setRooms(res.rooms);
-        }
-        this.setState(false);
-      });
+      this.getRooms();
     } else {
       this.$router.push('/', () => {});
     }
   },
   methods: {
+    getRooms() {
+      this.setState(true);
+      API.rooms.index().then(response => {
+        this.getRoomsSuccess(response);
+      });
+    },
     createRoom() {
-      if (this.roomName !== '') {
+      if (this.roomName) {
         this.setState(true);
-        Api.rooms.create(this.roomName).then(() => {
-          Api.rooms.index().then(res => {
-            this.setRooms(res.rooms);
-            this.setState(false);
-          });
-          this.setState(false);
+        API.rooms.create(this.roomName).then(() => {
+          this.getRooms();
         });
       } else {
         this.$toasted.error(this.$t('err3'));
       }
+    },
+    getRoomsSuccess(response) {
+      if (response && response.rooms) {
+        this.setRooms(response.rooms);
+      }
+
+      this.setState(false);
     },
     ...mapMutations(['setRooms', 'setRoomId', 'setState'])
   }
