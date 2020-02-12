@@ -10,4 +10,6 @@ Instalar dependencias: npm i (en la raíz del proyecto)
 
 Lanzar el servidor: npm run serve
 
+Tests:  npx cypress run
+
 El Back-end de este proyecto se encuentra en el repositorio: https://github.com/iRodriguez-icired/chat-backend
