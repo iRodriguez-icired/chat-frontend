@@ -2,7 +2,7 @@
   <img
     v-if="show"
     class="gif"
-    src="../assets/loading.gif"
+    src="../../assets/loading.gif"
     alt
   >
 </template>

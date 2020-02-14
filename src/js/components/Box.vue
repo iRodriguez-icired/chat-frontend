@@ -4,7 +4,7 @@
     class="box row mt-2"
   >
     <div
-      v-if="messagesFather"
+      v-if="messagesFather&&!show"
       class="col-12"
     >
       <p
