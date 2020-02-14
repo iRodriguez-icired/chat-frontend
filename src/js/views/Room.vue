@@ -57,17 +57,7 @@ export default {
     ...mapGetters(['getRoomName'])
   },
   created() {
-    if (this.name !== '') {
-      this.setMsg([]);
-      this.param = this.$router.history.current.params.id;
-      this.getRoom();
-      this.setState(true);
-      API.messages.show(this.param).then(response => {
-        this.getRoomMessages(response);
-      });
-    } else {
-      this.$router.push('/', () => {});
-    }
+    this.init();
   },
   mounted() {
     this.$cable.subscribe({
@@ -87,7 +77,19 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['sendMsg', 'setMsg', 'setState']),
+    init() {
+      if (this.name !== '') {
+        this.setMsg([]);
+        this.param = this.$router.history.current.params.id;
+        this.getRoom();
+        this.setState(true);
+        API.messages.show(this.param).then(response => {
+          this.getRoomMessages(response);
+        });
+      } else {
+        this.$router.push('/', () => {});
+      }
+    },
     sendMessage() {
       if (this.msg !== '') {
         this.$cable.perform({
@@ -114,7 +116,9 @@ export default {
     },
     getRoom() {
       this.roomName = this.getRoomName(this.param).name;
-    }
+    },
+    ...mapMutations(['sendMsg', 'setMsg', 'setState'])
+
   }
 };
 </script>
