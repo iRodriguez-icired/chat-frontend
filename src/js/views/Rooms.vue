@@ -31,9 +31,8 @@ import {mapState, mapMutations} from 'vuex';
 import Box from '../components/Box.vue';
 import Modal from '../components/Modal.vue';
 import Head from '../components/Head.vue';
-
 // eslint-disable-next-line import/no-cycle
-import API from '../js/services/api/resource';
+import API from '../services/api/resource';
 
 export default {
   components: {

@@ -37,7 +37,7 @@ import Box from '../components/Box.vue';
 import CustomInput from '../components/CustomInput.vue';
 import Head from '../components/Head.vue';
 // eslint-disable-next-line import/no-cycle
-import Api from '../js/services/api/resource';
+import API from '../services/api/resource';
 
 export default {
   components: {
@@ -62,11 +62,8 @@ export default {
       this.param = this.$router.history.current.params.id;
       this.getRoom();
       this.setState(true);
-      Api.messages.show(this.param).then(res => {
-        if (res !== undefined) {
-          this.setMsg(res.msg);
-        }
-        this.setState(false);
+      API.messages.show(this.param).then(response => {
+        this.getRoomMessages(response);
       });
     } else {
       this.$router.push('/', () => {});
@@ -108,11 +105,17 @@ export default {
         this.$toasted.error(this.$t('err2'));
       }
     },
+    getRoomMessages(response) {
+      if (response && response.msg) {
+        this.setMsg(response.msg);
+      }
+
+      this.setState(false);
+    },
     getRoom() {
       this.roomName = this.getRoomName(this.param).name;
     }
   }
-
 };
 </script>
 <style scoped>
