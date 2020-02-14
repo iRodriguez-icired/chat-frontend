@@ -47,14 +47,17 @@ export default {
   },
   computed: mapState(['rooms', 'url', 'name', 'show']),
   created() {
-    this.setRooms([]);
-    if (this.name !== '') {
-      this.getRooms();
-    } else {
-      this.$router.push('/', () => {});
-    }
+    this.init();
   },
   methods: {
+    init() {
+      this.setRooms([]);
+      if (this.name !== '') {
+        this.getRooms();
+      } else {
+        this.$router.push('/', () => {});
+      }
+    },
     getRooms() {
       this.setState(true);
       API.rooms.index().then(response => {
