@@ -19,7 +19,10 @@ export default {
       err1: 'El nombre no puede estar vacío',
       err2: 'No se puede enviar un mensaje vacío',
       err3: 'El nombre de la sala no puede estar vacío',
-      errNet: 'No hay conexión con el servidor'
+      errNet: 'No hay conexión con el servidor',
+      notFound: 'Sala no encontrada',
+      blank: 'El campo no puede estar vacío',
+      taken: 'Ese nombre ya está cogido'
     },
     en: {
       btn1: 'Enter',
@@ -32,8 +35,11 @@ export default {
       ph3: 'Room name',
       err1: 'Name cannot be empty',
       err2: 'Unable to send an empty message',
-      err3: 'El nombre de la sala no puede estar vacío',
-      errNet: 'The name of the room cannot be empty'
+      err3: 'The name of the room cannot be empty',
+      errNet: 'There is no connection with server',
+      notFound: 'Room not found',
+      blank: 'The field cannot be blank',
+      taken: 'The name is already taken'
     }
   }
 };
