@@ -10,8 +10,8 @@ export default {
     const DEFAULT_OPTIONS = {resource: 'rooms.js'}; return Object.assign({},
       DEFAULT_OPTIONS, ...options);
   },
-  index(options = {}) {
-    return Vue.http.get(this.baseUrl, options).then(
+  async index(options = {}) {
+    const wait = await Vue.http.get(this.baseUrl, options).then(
       response => {
         return {
           rooms: response.body.rooms
@@ -21,15 +21,17 @@ export default {
       .catch(err => {
         errors.error(err);
       });
+    return wait;
   },
-  create(data, options = {}) {
+  async create(data, options = {}) {
     const obj = {
       name: data
     };
-    return Vue.http.post(this.baseUrl, obj, this.mergeOptions(options))
+    const wait = await Vue.http.post(this.baseUrl, obj, this.mergeOptions(options))
       .then(response => { return response; })
       .catch(err => {
         errors.error(err);
       });
+    return wait;
   }
 };

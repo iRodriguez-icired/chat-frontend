@@ -10,9 +10,9 @@ export default {
     const DEFAULT_OPTIONS = {resource: 'messajes.js'}; return Object.assign({},
       DEFAULT_OPTIONS, ...options);
   },
-  show(id, options = {}) {
+  async show(id, options = {}) {
     const url = `${this.baseUrl}room_id=${id}&sort=created_at`;
-    return Vue.http.get(url, options).then(
+    const wait = await Vue.http.get(url, options).then(
       response => {
         return {
           msg: response.body.messages
@@ -21,5 +21,6 @@ export default {
     ).catch(err => {
       errors.error(err);
     });
+    return wait;
   }
 };
