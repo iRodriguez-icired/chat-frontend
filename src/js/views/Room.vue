@@ -32,12 +32,13 @@
 </template>
 
 <script>
+/* eslint-disable import/no-cycle */
 import {mapState, mapMutations, mapGetters} from 'vuex';
 import Box from '../components/Box.vue';
 import CustomInput from '../components/CustomInput.vue';
 import Head from '../components/Head.vue';
-// eslint-disable-next-line import/no-cycle
 import API from '../services/api/resource';
+import SOCKET from '../services/action-cable';
 
 export default {
   components: {
@@ -60,19 +61,13 @@ export default {
     this.init();
   },
   mounted() {
-    this.$cable.subscribe({
-      channel: 'RoomChannel',
-      id: this.param
-    });
+    SOCKET.subscribe(this.param);
   },
   channels: {
     RoomChannel: {
       connected() {},
       received(data) {
-        this.messages.push({
-          author: data.message.author,
-          text: data.message.text
-        });
+        this.pushData(data, this.messages);
       }
     }
   },
@@ -91,34 +86,25 @@ export default {
       }
     },
     sendMessage() {
-      if (this.msg !== '') {
-        this.$cable.perform({
-          channel: 'RoomChannel',
-          data: {
-            content: {
-              author: this.name,
-              text: this.msg,
-              room_id: this.param
-            }
-          }
-        });
-        this.msg = '';
-      } else {
-        this.$toasted.error(this.$t('err2'));
-      }
+      SOCKET.send(this.msg, this.name, this.param);
+      this.msg = '';
     },
     getRoomMessages(response) {
       if (response && response.msg) {
         this.setMsg(response.msg);
       }
-
       this.setState(false);
     },
     getRoom() {
       this.roomName = this.getRoomName(this.param).name;
     },
+    pushData(data, messages) {
+      messages.push({
+        author: data.message.author,
+        text: data.message.text
+      });
+    },
     ...mapMutations(['sendMsg', 'setMsg', 'setState'])
-
   }
 };
 </script>
