@@ -10,7 +10,7 @@ export default new Vuex.Store({
     name: '',
     rooms: [],
     messages: [],
-    show: false
+    showGif: false
   },
   mutations: {
     setNombre: (state, name) => {
@@ -25,7 +25,7 @@ export default new Vuex.Store({
       state.messages = msg;
     },
     setState: (state, bool) => {
-      state.show = bool;
+      state.showGif = bool;
     }
 
   },

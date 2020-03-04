@@ -4,7 +4,7 @@
     class="box row mt-2"
   >
     <div
-      v-if="messagesFather&&!show"
+      v-if="messagesFather&&!showGif"
       class="col-12"
     >
       <p
@@ -16,7 +16,7 @@
       </p>
     </div>
     <div
-      v-if="!show"
+      v-if="!showGif"
       class="rooms w-100"
     >
       <div
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="col-12 text-center align-self-center">
-      <Gif :show="show" />
+      <Gif :show="showGif" />
     </div>
   </div>
 </template>
@@ -49,7 +49,7 @@ export default {
   props: {
     roomsFather: Array,
     messagesFather: Array,
-    show: Boolean
+    showGif: Boolean
   }
 };
 </script>

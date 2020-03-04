@@ -12,7 +12,7 @@
     <Box
       :messages-father="messages"
       class="text-left"
-      :show="show"
+      :show-gif="showGif"
     />
 
     <div
@@ -54,7 +54,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(['name', 'messages', 'show']),
+    ...mapState(['name', 'messages', 'showGif']),
     ...mapGetters(['getRoomName'])
   },
   created() {
@@ -78,12 +78,15 @@ export default {
         this.param = this.$router.history.current.params.id;
         this.getRoom();
         this.setState(true);
-        API.messages.show(this.param).then(response => {
-          this.getRoomMessages(response);
-        });
+        this.showMessage();
       } else {
         this.$router.push('/', () => {});
       }
+    },
+    showMessage() {
+      API.messages.show(this.param).then(response => {
+        this.getRoomMessages(response);
+      });
     },
     sendMessage() {
       SOCKET.send(this.msg, this.name, this.param);

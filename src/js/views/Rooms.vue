@@ -13,7 +13,7 @@
     />
     <Box
       :rooms-father="rooms"
-      :show="show"
+      :show-gif="showGif"
     />
     <Modal
       :action="'Enter'"
@@ -45,7 +45,7 @@ export default {
       roomName: ''
     };
   },
-  computed: mapState(['rooms', 'url', 'name', 'show']),
+  computed: mapState(['rooms', 'url', 'name', 'showGif']),
   created() {
     this.init();
   },
